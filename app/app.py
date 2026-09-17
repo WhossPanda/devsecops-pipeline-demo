@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # INTENTIONAL FLAW (for Gitleaks demo) - remove before final commit,
 # see SECURITY.md for the remediation writeup.
-app.config['SECRET_KEY'] = 'super-secret-dev-key-12345'
+app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', os.urandom(24).hex())
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
