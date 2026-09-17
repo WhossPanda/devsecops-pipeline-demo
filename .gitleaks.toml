@@ -11,7 +11,7 @@ description = "Catches secret/key/password/token variables assigned a plain stri
 regex = '''(?i)(secret_key|api_key|apikey|password|passwd|secret|token)\s*=\s*['"][a-zA-Z0-9_\-]{6,}['"]'''
 tags = ["custom", "hardcoded-secret"]
 
-[[rules.allowlist]]
+[rules.allowlist]
 # Avoid flagging obvious non-secrets like environment variable references or empty placeholders
 regexes = [
   '''os\.environ''',
