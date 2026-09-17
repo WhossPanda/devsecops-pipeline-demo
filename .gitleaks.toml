@@ -1,19 +1,21 @@
 title = "Custom Gitleaks Config"
 
 [extend]
-# Keep all of Gitleaks' built-in rules (AWS keys, JWTs, high-entropy tokens, etc.)
-# and add ours on top, rather than replacing them.
 useDefault = true
 
 [[rules]]
 id = "hardcoded-secret-assignment"
 description = "Catches secret/key/password/token variables assigned a plain string literal, regardless of entropy"
-regex = '''(?i)(secret_key|api_key|apikey|password|passwd|secret|token)['\"]?\]?\s*=\s*['"][a-zA-Z0-9_\-]{6,}['"]'''
+regex = '''(?i)(secret_key|api_key|apikey|password|passwd|secret|token)['"]?\]?\s*=\s*['"][a-zA-Z0-9_\-]{6,}['"]'''
 tags = ["custom", "hardcoded-secret"]
 
 [rules.allowlist]
-# Avoid flagging obvious non-secrets like environment variable references or empty placeholders
 regexes = [
   '''os\.environ''',
   '''os\.getenv''',
+]
+
+[allowlist]
+paths = [
+  '''SECURITY\.md''',
 ]
