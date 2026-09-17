@@ -1,0 +1,8 @@
+# GHSA-6v7p-g79w-8964 (msgpack) and CVE-2025-47273 (setuptools) are vendored
+# internally inside pip's own bundled tooling (pip/_vendor and
+# ensurepip/_bundled respectively), not top-level app dependencies. Neither
+# is imported or executed by app.py or any runtime code path — confirmed via
+# filesystem inspection (find / -iname). Accepted risk, documented per
+# Trivy's VEX guidance: https://trivy.dev/docs/v0.74/guide/supply-chain/vex/repo
+GHSA-6v7p-g79w-8964
+CVE-2025-47273
