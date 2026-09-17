@@ -67,7 +67,7 @@ jobs:
     name: AWS OIDC - Verify Passwordless Auth
     runs-on: ubuntu-latest
     permissions:
-      id-token: write   # required for requesting the OIDC JWT
+      id-token: write   
       contents: read
     steps:
       - name: Configure AWS credentials via OIDC
@@ -75,6 +75,8 @@ jobs:
         with:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           aws-region: us-east-1
+          audience: sts.amazonaws.com
 
       - name: Verify identity (no long-lived keys used)
         run: aws sts get-caller-identity
+
